@@ -1,32 +1,44 @@
 <html>
     <body>
-    <table>
-       <tr><td><label>Email</label></td></tr> 
-       <tr><td><input id="email" type="text"></td>
-       <tr><td><p id="error"></p></td></tr>
-       <tr><td><input type="button" value="Submit" onclick="namevalidation()"></td></tr>
-    </table>
-    <script>
-        const emailFormat = /^[a-zA-Z][a-zA-Z.\-]*\s+[a-zA-Z.\-]+$/;
-        function namevalidation()
-        {
-            let email=document.getElementById('email').value;
-            let error=document.getElementById('error');
-            if(email==""){
-                error.innerHTML='The Field is EMPTY';
-                error.style.color='red';
-            }
-            else if (!nameFormat.test(name)){
-                 error.innerHTML="Invalid Email";
-                 error.style.color = 'red';
-            }
-            else
-            {
-                error.innerHTML = "Valid Email"
+        <table>
+            <tr><td><label>Email</label></td></tr> 
+            <tr><td><input id="email" type="text"></td></tr>
+            <tr><td><p id="error"></p></td></tr>
+            <tr><td><input type="button" value="Submit" onclick="emailValidation()"></td></tr>
+        </table>
+        <script>
+            function emailValidation() {
+                let email = document.getElementById('email').value.trim();
+                let error = document.getElementById('error');
+
+                if (email === "") {
+                    error.innerHTML = 'The field is empty';
+                    error.style.color = 'red';
+                    return;
+                }
+
+                if (!(email[0] >= 'A' && email[0] <= 'Z') && !(email[0] >= 'a' && email[0] <= 'z') && !(email[0] >= '0' && email[0] <= '9')) {
+                    error.innerHTML = "Invalid email: Must start with a letter or number.";
+                    error.style.color = 'red';
+                    return;
+                }
+
+                if (!email.includes('@') || !email.includes('.')) {
+                    error.innerHTML = "Invalid email: Must contain '@' and '.'";
+                    error.style.color = 'red';
+                    return;
+                }
+
+                let domainPart = email.split('@')[1];
+                if (!domainPart || domainPart.split('.').length < 2) {
+                    error.innerHTML = "Invalid email: Invalid domain name (e.g., example.com).";
+                    error.style.color = 'red';
+                    return;
+                }
+
+                error.innerHTML = "Valid Email";
                 error.style.color = 'green';
             }
-
-        }
-    </script>
+        </script>
     </body>
 </html>

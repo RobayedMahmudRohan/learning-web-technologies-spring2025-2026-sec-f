@@ -1,0 +1,42 @@
+<html>
+    <body>
+        <fieldset>
+            <legend>Profile Picture</legend>
+            <table>
+                <tr>
+                    <td><label>User ID</label></td>
+                    <td><input id="id"><br></td>
+                </tr>
+                <tr>
+                    <td><label>Picture</label></td>
+                    <td><input id="picture" type="file"></td>
+                </tr>
+            </table>
+            <hr>
+            <p id="error"></p>
+            <input type="button" value="Submit" onclick="validateForm()"> 
+        </fieldset>
+        <script>
+            function validateForm() {
+                let userId = document.getElementById('id').value;
+                let fileInput = document.getElementById('picture');
+                let error = document.getElementById('error');
+                
+                if (!userId.match(/^[1-9]\d*$/)) {
+                    error.innerHTML = "User ID must be a positive number";
+                    error.style.color = 'red';
+                    return;
+                }
+                
+                if (!fileInput.files.length) {
+                    error.innerHTML = "Please select a picture";
+                    error.style.color = 'red';
+                    return;
+                }
+                
+                error.innerHTML = "Valid";
+                error.style.color = 'green';
+            }
+        </script>
+    </body>
+</html>

@@ -1,32 +1,48 @@
 <html>
     <body>
-    <table>
-       <tr><td><label>Name</label></td></tr> 
-       <tr><td><input id="name" type="text"></td></tr>
-       <tr><td><p id="error"></p></td></tr>
-       <tr><td><input type="button" value="Submit" onclick="namevalidation()"></td></tr>
-    </table>
-    <script>
-        const nameFormat = /^[a-zA-Z][a-zA-Z.\-]*\s+[a-zA-Z.\-]+$/;
-        function namevalidation()
-        {
-            let name=document.getElementById('name').value;
-            let error=document.getElementById('error');
-            if(name==""){
-                error.innerHTML='The Field is EMPTY';
-                error.style.color='red';
-            }
-            else if (!nameFormat.test(name)){
-                 error.innerHTML="Name must start with a letter, contain at least two words, and may include dot (.) or dash (-)";
-                 error.style.color = 'red';
-            }
-            else
-            {
-                error.innerHTML = "Valid Name"
+        <table>
+            <tr><td><label>Name</label></td></tr> 
+            <tr><td><input id="name" type="text"></td></tr>
+            <tr><td><p id="error"></p></td></tr>
+            <tr><td><input type="button" value="Submit" onclick="namevalidation()"></td></tr>
+        </table>
+        <script>
+            function namevalidation() {
+                let name = document.getElementById('name').value.trim();
+                let error = document.getElementById('error');
+
+                if (name === "") {
+                    error.innerHTML = 'The field is empty';
+                    error.style.color = 'red';
+                    return;
+                }
+
+                if (!(name[0] >= 'A' && name[0] <= 'Z') && !(name[0] >= 'a' && name[0] <= 'z')) {
+                    error.innerHTML = "Invalid name: Must start with a letter.";
+                    error.style.color = "red";
+                    return;
+                }
+
+                let words = name.split(" ").filter(word => word.length > 0);
+                if (words.length < 2) {
+                    error.innerHTML = "Invalid name: Must contain at least two words.";
+                    error.style.color = "red";
+                    return;
+                }
+
+                for (let char of name) {
+                    if (!((char >= 'A' && char <= 'Z') || 
+                          (char >= 'a' && char <= 'z') || 
+                          char === '.' || char === '-' || char === ' ')) {
+                        error.innerHTML = "Invalid name: Only letters, dot (.), and dash (-) are allowed.";
+                        error.style.color = "red";
+                        return;
+                    }
+                }
+
+                error.innerHTML = "Valid Name";
                 error.style.color = 'green';
             }
-
-        }
-    </script>
+        </script>
     </body>
 </html>

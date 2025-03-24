@@ -1,0 +1,40 @@
+<html>
+    <body>
+        <fieldset>
+            <legend>Gender</legend>
+            <input type="radio" id="male" name="gender">
+            <label for="male">Male</label>
+
+            <input type="radio" id="female" name="gender">
+            <label for="female">Female</label>
+
+            <input type="radio" id="other" name="gender">
+            <label for="other">Other</label>
+            <br>
+            <p id="error"></p>
+            <input type="button" value="Submit" onclick="gendervalidation()"> 
+        </fieldset>
+        <script>
+            function gendervalidation(){
+                let genders = document.getElementsByName("gender");
+                let error = document.getElementById('error');
+                let isSelected = false;
+
+                for (let i = 0; i < genders.length; i++) {
+                    if (genders[i].checked) {
+                        isSelected = true;
+                        break;
+                    }
+                }
+
+                if (!isSelected) {
+                    error.innerHTML = "Please select a gender";
+                    error.style.color = 'red';
+                } else {
+                    error.innerHTML = "Valid";
+                    error.style.color = 'green';
+                }
+            }
+        </script>
+    </body>
+</html>

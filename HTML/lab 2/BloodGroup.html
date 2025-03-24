@@ -1,7 +1,6 @@
 <html>
     <body>
-        <fieldset>
-            <legend>Blood Group</legend>
+            <label>Blood Group</label>
             <select id="bloodGroup">
                 <option value="">Select a blood group</option>
                 <option value="A+">A+</option>
@@ -15,7 +14,6 @@
             </select>
             <br><hr><p id="error"></p>
             <input type="button" value="Submit" onclick="bloodGroupValidation()"> 
-        </fieldset>
         <script>
             function bloodGroupValidation() {
                 let bloodGroup = document.getElementById('bloodGroup').value;

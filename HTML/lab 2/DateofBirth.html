@@ -1,0 +1,73 @@
+<html>
+    <body>
+        <fieldset>
+            <legend>Date Of Birth</legend>
+            <table>
+                <tr>
+                    <td><label>dd</label></td>
+                    <td><label>  </label></td>
+                    <td><label>mm</label></td>
+                    <td><label>  </label></td>
+                    <td><label>yyyy</label></td>
+                </tr>
+                <tr>
+                    <td><input id="dd" type="number"></td>
+                    <td><label>/</label></td>
+                    <td><input id="mm" type="number"></td>
+                    <td><label>/</label></td>
+                    <td><input id="yyyy" type="number"></td>
+                </tr>
+            </table>
+            <hr>
+            <p id="error"></p>
+            <input type="button" value="Submit" onclick="dobvalidation()"> 
+        </fieldset>
+        <script>
+            function dobvalidation()
+            {
+                let dds = document.getElementById("dd").value;
+                let mms = document.getElementById("mm").value;
+                let yyyys = document.getElementById("yyyy").value;
+                let error = document.getElementById('error');
+                if (dds == "") {
+                    error.innerHTML = 'The date field is empty';
+                    error.style.color = 'red';
+                    return;
+                }
+                else if(1>dds||dds>31)
+                {
+                    error.innerHTML = 'The date field should be between 0-31';
+                    error.style.color = 'red';
+                    return;
+                }
+                if (mms == "") {
+                    error.innerHTML = 'The month field is empty';
+                    error.style.color = 'red';
+                    return;
+                }
+                else if(1>mms||dds>12)
+                {
+                    error.innerHTML = 'The month field should be between 1-12';
+                    error.style.color = 'red';
+                    return;
+                }
+                if (yyyys == "") {
+                    error.innerHTML = 'The year field is empty';
+                    error.style.color = 'red';
+                    return;
+                }
+                else if(1900>yyyys||dds>2016)
+                {
+                    error.innerHTML = 'The year field should be between 1900-2016';
+                    error.style.color = 'red';
+                    return;
+                }
+
+                else {
+                    error.innerHTML = "Valid";
+                    error.style.color = 'green';
+                }
+            }
+        </script>
+    </body>
+</html>

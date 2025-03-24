@@ -19,14 +19,12 @@
                 let genders = document.getElementsByName("gender");
                 let error = document.getElementById('error');
                 let isSelected = false;
-
                 for (let i = 0; i < genders.length; i++) {
                     if (genders[i].checked) {
                         isSelected = true;
                         break;
                     }
                 }
-
                 if (!isSelected) {
                     error.innerHTML = "Please select a gender";
                     error.style.color = 'red';
